@@ -25,7 +25,7 @@ Public Class FormMain
 
 
             For Each saveitem As ListViewItem In ListViewMain.Items
-                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text & vbNewLine)
+                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text.Replace(vbCrLf, "<vbNewLine>") & vbNewLine)
             Next
 
             If mySaveFileDialog.ShowDialog = DialogResult.OK Then
@@ -57,7 +57,7 @@ Public Class FormMain
 
 
             For Each saveitem As ListViewItem In ListViewMain.Items
-                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text & vbNewLine)
+                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text.Replace(vbCrLf, "<vbNewLine>") & vbNewLine)
             Next
 
             If mySaveFileDialog.ShowDialog = DialogResult.OK Then
@@ -104,7 +104,7 @@ Public Class FormMain
                     item.Text = rtb.Lines(i + 1)
                     item.SubItems.Add(rtb.Lines(i + 2))
                     item.SubItems.Add(rtb.Lines(i + 3))
-                    item.SubItems.Add(rtb.Lines(i + 4))
+                    item.SubItems.Add(rtb.Lines(i + 4).Replace("<vbNewLine>", vbNewLine))
                     i = i + 5
                     ListViewMain.Items.Add(item)
                 End If
@@ -124,7 +124,7 @@ Public Class FormMain
 
 
             For Each saveitem As ListViewItem In ListViewMain.Items
-                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text & vbNewLine)
+                rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text.Replace(vbCrLf, "<vbNewLine>") & vbNewLine)
             Next
 
             If mySaveFileDialog.ShowDialog = DialogResult.OK Then
@@ -152,7 +152,7 @@ Public Class FormMain
                         item.Text = rtb.Lines(i + 1)
                         item.SubItems.Add(rtb.Lines(i + 2))
                         item.SubItems.Add(rtb.Lines(i + 3))
-                        item.SubItems.Add(rtb.Lines(i + 4))
+                        item.SubItems.Add(rtb.Lines(i + 4).Replace("<vbNewLine>", vbNewLine))
                         i = i + 5
                         ListViewMain.Items.Add(item)
                     End If
@@ -178,7 +178,7 @@ Public Class FormMain
 
 
         For Each saveitem As ListViewItem In ListViewMain.Items
-            rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text & vbNewLine)
+            rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text.Replace(vbCrLf, "<vbNewLine>") & vbNewLine)
         Next
 
         If mySaveFileDialog.ShowDialog = DialogResult.OK Then
