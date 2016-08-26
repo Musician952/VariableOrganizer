@@ -333,7 +333,6 @@ Public Class FormMain
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText("MoveApp.bat", sb.ToString())
-                MessageBox.Show("Batch created")
                 Process.Start("MoveApp.bat")
                 Application.Exit()
             End If
