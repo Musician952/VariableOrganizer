@@ -287,7 +287,7 @@ Public Class FormMain
             ElseIf result = DialogResult.Yes Then
                 MessageBox.Show("The application will automatically run when the download finishes.", "Downloading...")
 
-                My.Computer.Network.DownloadFile("https://musician952.github.io/VariableOrganizer/Variable%20Organizer.exe", My.Computer.FileSystem.SpecialDirectories.MyDocuments + "Variable Organizer.exe")
+                My.Computer.Network.DownloadFile("https://musician952.github.io/VariableOrganizer/Variable%20Organizer.exe", My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe")
 
                 If Not My.Computer.FileSystem.DirectoryExists(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer") Then
                     My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer")
