@@ -285,7 +285,24 @@ Public Class FormMain
             If result = DialogResult.No Then
 
             ElseIf result = DialogResult.Yes Then
+                MessageBox.Show("The application will automatically run when the download finishes.", "Downloading...")
 
+                My.Computer.Network.DownloadFile("https://musician952.github.io/VariableOrganizer/Variable%20Organizer.exe", My.Computer.FileSystem.SpecialDirectories.MyDocuments + "Variable Organizer.exe")
+
+                If Not My.Computer.FileSystem.DirectoryExists(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer") Then
+                    My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer")
+                End If
+
+                Dim sb As New System.Text.StringBuilder
+
+                sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
+                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
+                sb.AppendLine("Start """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe""")
+
+                IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat", sb.ToString())
+
+                Process.Start(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat")
+                Application.Exit()
             End If
         End If
         reader.Close()
@@ -293,7 +310,6 @@ Public Class FormMain
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim appPath As String = My.Application.Info.DirectoryPath
-        MessageBox.Show(appPath)
         If Not appPath = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer" Then
             Dim result As Integer = MessageBox.Show("We noticed that the application is not in the default directory of " + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer" + vbNewLine + "If you would like, we can automatically move the program for you, or you can manually move it yourself.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If result = DialogResult.No Then
@@ -307,6 +323,7 @@ Public Class FormMain
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
+                sb.AppendLine("Start """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe""")
 
                 IO.File.WriteAllText("MoveApp.bat", sb.ToString())
 
