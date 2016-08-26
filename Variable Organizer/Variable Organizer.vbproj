@@ -27,7 +27,7 @@
     <PublisherName>David Lost</PublisherName>
     <SuiteName>Downloads for PC</SuiteName>
     <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

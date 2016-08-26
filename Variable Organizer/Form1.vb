@@ -296,8 +296,8 @@ Public Class FormMain
                 Dim sb As New System.Text.StringBuilder
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
-                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
                 sb.AppendLine("Start """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe""")
+                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat", sb.ToString())
 
@@ -322,8 +322,8 @@ Public Class FormMain
                 Dim sb As New System.Text.StringBuilder
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
-                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
                 sb.AppendLine("Start """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe""")
+                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText("MoveApp.bat", sb.ToString())
 
