@@ -297,7 +297,7 @@ Public Class FormMain
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
                 sb.AppendLine("""" + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer\Variable Organizer.exe""")
-                sb.AppendLine("exit")
+                sb.AppendLine("taskkill /IM cmd.exe")
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat", sb.ToString())
@@ -324,7 +324,7 @@ Public Class FormMain
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
                 sb.AppendLine("""" + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer\Variable Organizer.exe""")
-                sb.AppendLine("exit")
+                sb.AppendLine("taskkill /IM cmd.exe")
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText("MoveApp.bat", sb.ToString())
