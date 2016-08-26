@@ -289,20 +289,23 @@ Public Class FormMain
                 Me.Hide()
                 My.Computer.Network.DownloadFile("https://musician952.github.io/VariableOrganizer/Variable%20Organizer.exe", My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe")
 
-                MessageBox.Show("Download Finished")
+                MessageBox.Show("Download Finished", "Variable Organizer", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 If Not My.Computer.FileSystem.DirectoryExists(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer") Then
                     My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer")
                 End If
-                MessageBox.Show("direcory created")
+
                 Dim sb As New System.Text.StringBuilder
 
+                sb.AppendLine("@echo off")
+                sb.AppendLine("echo This window will move the application automatically, then self destruct. Please make sure Variable Organizer is closed before proceeding.")
+                sb.AppendLine("pause")
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
                 sb.AppendLine("start """" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer\Variable Organizer.exe""")
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
-                IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat", sb.ToString())
-                MessageBox.Show("batch file created")
-                Process.Start(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat")
+                IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\MoveApp.bat", sb.ToString())
+
+                Process.Start(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\MoveApp.bat")
                 Application.Exit()
             End If
         End If
@@ -322,12 +325,15 @@ Public Class FormMain
 
                 Dim sb As New System.Text.StringBuilder
 
+                sb.AppendLine("@echo off")
+                sb.AppendLine("echo This window will move the application automatically, then self destruct. Please make sure Variable Organizer is closed before proceeding.")
+                sb.AppendLine("pause")
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
                 sb.AppendLine("start """" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer\Variable Organizer.exe""")
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText("MoveApp.bat", sb.ToString())
-
+                MessageBox.Show("Batch created")
                 Process.Start("MoveApp.bat")
                 Application.Exit()
             End If
