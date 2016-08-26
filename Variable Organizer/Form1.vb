@@ -290,4 +290,29 @@ Public Class FormMain
         End If
         reader.Close()
     End Sub
+
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim appPath As String = My.Application.Info.DirectoryPath
+        MessageBox.Show(appPath)
+        If Not appPath = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer" Then
+            Dim result As Integer = MessageBox.Show("We noticed that the application is not in the default directory of " + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer" + vbNewLine + "If you would like, we can automatically move the program for you, or you can manually move it yourself.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If result = DialogResult.No Then
+                Application.Exit()
+            ElseIf result = DialogResult.Yes Then
+                If Not My.Computer.FileSystem.DirectoryExists(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer") Then
+                    My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer")
+                End If
+
+                Dim sb As New System.Text.StringBuilder
+
+                sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
+                sb.AppendLine("(goto) 2>nul & del ""%~f0""")
+
+                IO.File.WriteAllText("MoveApp.bat", sb.ToString())
+
+                Process.Start("MoveApp.bat")
+                Application.Exit()
+            End If
+        End If
+    End Sub
 End Class
