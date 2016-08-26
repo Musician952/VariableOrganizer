@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net
 
 Public Class FormMain
 
@@ -174,14 +175,14 @@ Public Class FormMain
         mySaveFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer"
         mySaveFileDialog.DefaultExt = "txt"
 
-        
+
 
         For Each saveitem As ListViewItem In ListViewMain.Items
             rtb.AppendText("--" & vbNewLine & saveitem.Text & vbNewLine & saveitem.SubItems(1).Text & vbNewLine & saveitem.SubItems(2).Text & vbNewLine & saveitem.SubItems(3).Text & vbNewLine)
         Next
 
         If mySaveFileDialog.ShowDialog = DialogResult.OK Then
-                rtb.SaveFile(mySaveFileDialog.FileName, RichTextBoxStreamType.PlainText)
+            rtb.SaveFile(mySaveFileDialog.FileName, RichTextBoxStreamType.PlainText)
         End If
 
     End Sub
@@ -269,5 +270,24 @@ Public Class FormMain
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         AboutBox1.Show()
+    End Sub
+
+    Private Sub CheckForUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
+        Dim address As String = "https://musician952.github.io/VariableOrganizer/Updates.txt"
+        Dim client As WebClient = New WebClient()
+        Dim reader As StreamReader = New StreamReader(client.OpenRead(address))
+        Dim rtb As New RichTextBox
+        rtb.Text = reader.ReadToEnd
+        If String.Format(My.Application.Info.Version.ToString) = rtb.Text Then
+            MessageBox.Show("Your app is up to date!", "Up to Date")
+        Else
+            Dim result As Integer = MessageBox.Show("You are currently running Version " + My.Application.Info.Version.ToString + ". Would you like to download Version " + rtb.Text + "?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            If result = DialogResult.No Then
+
+            ElseIf result = DialogResult.Yes Then
+
+            End If
+        End If
+        reader.Close()
     End Sub
 End Class
