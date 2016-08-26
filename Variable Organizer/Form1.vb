@@ -286,13 +286,14 @@ Public Class FormMain
 
             ElseIf result = DialogResult.Yes Then
                 MessageBox.Show("The application will automatically run when the download finishes.", "Downloading...")
-
+                Me.Hide()
                 My.Computer.Network.DownloadFile("https://musician952.github.io/VariableOrganizer/Variable%20Organizer.exe", My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Variable Organizer.exe")
 
+                MessageBox.Show("Download Finished")
                 If Not My.Computer.FileSystem.DirectoryExists(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer") Then
                     My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer")
                 End If
-
+                MessageBox.Show("direcory created")
                 Dim sb As New System.Text.StringBuilder
 
                 sb.AppendLine("move ""Variable Organizer.exe"" """ + My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\VariableOrganizer""")
@@ -300,7 +301,7 @@ Public Class FormMain
                 sb.AppendLine("(goto) 2>nul & del ""%~f0""")
 
                 IO.File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat", sb.ToString())
-
+                MessageBox.Show("batch file created")
                 Process.Start(My.Computer.FileSystem.SpecialDirectories.MyDocuments + "MoveApp.bat")
                 Application.Exit()
             End If
